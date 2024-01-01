@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwdy42jecaior"]
+
+[ext_resource type="Texture2D" uid="uid://djtivi4fod52w" path="res://Art/Tile.png" id="1_gpgn5"]
+
+[node name="Tile" type="Node2D"]
+
+[node name="Top" type="Sprite2D" parent="."]
+texture = ExtResource("1_gpgn5")
+offset = Vector2(0, -32)
