@@ -18,28 +18,31 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 
 # Called to spawn the grid of tiles
 func SpawnTiles():
 	# Define how much the tiles need to move in order to sit beside each other correctly
-	var rightOffset = Vector2i(tileSize.x/2, -tileSize.y/2)
-	var leftOffset = Vector2i(-tileSize.x/2, -tileSize.y/2)
+	var rightOffset = Vector2(tileSize.x/2.0, -tileSize.y/2.0)
+	var leftOffset = Vector2(-tileSize.x/2.0, -tileSize.y/2.0)
 	
 	# Loop through the grid and spawn all the tiles
 	for x in range(gridSize.x):
 		for y in range(gridSize.y):
 			# Use the tile's grid position and the offsets to determine this tile's position
-			var right = x - 1
-			var left = y - 1
-			var tilePos = (left * leftOffset) + (right * rightOffset)
+			var tilePos = (y * leftOffset) + (x * rightOffset)
+			var tileGridPos = Vector2i(x, y)
 			
 			# Spawn the tile and set it's position
 			var newTile = tileScene.instantiate()
-			newTile.Setup(tilePos)
+			newTile.Setup(tilePos, tileGridPos)
 			tileParent.add_child(newTile)
 			
 			# Store references to the tiles for future calculations
-			tiles[tilePos] = newTile
+			tiles[tileGridPos] = newTile
+	
+	for key in tiles:
+		var tile = tiles[key]
+		tile.SetupLines(tiles)

@@ -11,5 +11,5 @@ tileParent = NodePath("Tile Grid")
 [node name="Tile Grid" type="Node2D" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -84)
+position = Vector2(0, -130)
 zoom = Vector2(2, 2)
