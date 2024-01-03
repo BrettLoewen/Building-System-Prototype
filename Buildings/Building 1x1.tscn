@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://8cqyxmbj4ar3"]
+
+[ext_resource type="Texture2D" uid="uid://bym33jpvnx5bm" path="res://Art/Building 1x1.png" id="1_motyo"]
+
+[node name="Building 1x1" type="Node2D"]
+modulate = Color(0.454902, 0.890196, 1, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -32)
+texture = ExtResource("1_motyo")

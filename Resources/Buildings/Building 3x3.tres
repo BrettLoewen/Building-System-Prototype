@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://b7m5ly5phrojq"]
+
+[ext_resource type="PackedScene" uid="uid://fdf56tl4yg68" path="res://Buildings/Building 3x3.tscn" id="1_sthaw"]
+[ext_resource type="Script" path="res://Building.gd" id="2_5djiq"]
+
+[resource]
+script = ExtResource("2_5djiq")
+buildingScene = ExtResource("1_sthaw")
+size = Vector2i(3, 3)
