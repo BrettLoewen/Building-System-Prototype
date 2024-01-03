@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnma0okkicfq0"]
+
+[ext_resource type="Script" path="res://Main.gd" id="1_tmgw6"]
+[ext_resource type="PackedScene" uid="uid://dwdy42jecaior" path="res://Tile.tscn" id="2_mokvw"]
+
+[node name="Main" type="Node2D" node_paths=PackedStringArray("tileParent")]
+script = ExtResource("1_tmgw6")
+tileScene = ExtResource("2_mokvw")
+tileParent = NodePath("Tile Grid")
+
+[node name="Tile Grid" type="Node2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -130)
+zoom = Vector2(2, 2)

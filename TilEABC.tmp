@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dwdy42jecaior"]
+[gd_scene load_steps=7 format=3 uid="uid://dwdy42jecaior"]
 
 [ext_resource type="Texture2D" uid="uid://djtivi4fod52w" path="res://Art/Tile.png" id="1_gpgn5"]
 [ext_resource type="Script" path="res://Tile.gd" id="1_hcgrg"]
-[ext_resource type="Resource" uid="uid://ddvqtisdpws7f" path="res://Resources/Colors.tres" id="2_6gync"]
 [ext_resource type="Texture2D" uid="uid://bcxwi6q5oo6np" path="res://Art/Line Top-Left.png" id="3_5hv07"]
 [ext_resource type="Texture2D" uid="uid://0r5630dgtn1e" path="res://Art/Line Top-Right.png" id="4_7m2k6"]
 [ext_resource type="Texture2D" uid="uid://vsn2cd1gl5qg" path="res://Art/Line Bottom-Left.png" id="5_6sojr"]
@@ -11,7 +10,6 @@
 [node name="Tile" type="Node2D" node_paths=PackedStringArray("lines")]
 script = ExtResource("1_hcgrg")
 lines = [NodePath("Line Top-Left"), NodePath("Line Top-Right"), NodePath("Line Bottom-Left"), NodePath("Line Bottom-Right")]
-colors = ExtResource("2_6gync")
 
 [node name="Top" type="Sprite2D" parent="."]
 position = Vector2(0, -32)

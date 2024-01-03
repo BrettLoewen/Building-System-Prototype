@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://ddvqtisdpws7f"]
+
+[ext_resource type="Script" path="res://Colors.gd" id="1_kag57"]
+
+[resource]
+script = ExtResource("1_kag57")
+lineHiddenColor = Color(0, 0, 0, 0)
+lineEdgeColor = Color(0, 0, 0, 100)
+lineSelectedColor = Color(0.811765, 0.835294, 0, 1)
