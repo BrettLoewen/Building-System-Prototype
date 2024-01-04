@@ -5,5 +5,6 @@
 
 [resource]
 script = ExtResource("2_ibhok")
+buildingName = "1x1"
 buildingScene = ExtResource("1_ox3wo")
 size = Vector2i(1, 1)

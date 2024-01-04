@@ -15,6 +15,9 @@ var tiles: Dictionary
 var selectedTileQueue: Array[Node2D]
 var selectedTile
 
+# Defines the buildings that will appear in the building menu
+@export var buildings: Array[Resource]
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

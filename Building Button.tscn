@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://d20xt4n35k7vw"]
+
+[ext_resource type="FontFile" uid="uid://b0g2e66fsmvux" path="res://Art/Minecraftia-Regular.ttf" id="1_fishl"]
+[ext_resource type="Script" path="res://BuildingButton.gd" id="1_l8fip"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nhtwp"]
+bg_color = Color(0, 0.145098, 0.247059, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_57a23"]
+font = ExtResource("1_fishl")
+
+[node name="Building Button" type="Button" node_paths=PackedStringArray("label")]
+custom_minimum_size = Vector2(50, 50)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_nhtwp")
+script = ExtResource("1_l8fip")
+label = NodePath("Label")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "1x1"
+label_settings = SubResource("LabelSettings_57a23")
+horizontal_alignment = 1
+vertical_alignment = 1
