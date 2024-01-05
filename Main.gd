@@ -1,6 +1,7 @@
 extends Node2D
 
 
+# The current state of the game
 var gameState: Constants.GameState
 
 @export var tileScene: PackedScene			# Defines the tile that will be spawned
@@ -17,11 +18,11 @@ var tiles: Dictionary
 var selectedTileQueue: Array[Node2D]
 var selectedTile
 
-# Defines the buildings that will appear in the building menu
-@export var buildings: Array[Resource]
-var selectedBuilding
-@export var buildingParent: Node2D
+@export var buildings: Array[Resource]	# Defines the buildings that will appear in the building menu
+var selectedBuilding					# References the currently selected building
+@export var buildingParent: Node2D		# The node the buildings will be spawned under
 
+# References the UI control node to call functions on it
 @export var hudNode: Control
 
 
@@ -48,17 +49,24 @@ func _process(_delta):
 			selectedTile.DeselectTile()
 			selectedTile = null
 	
-	#
+	# If the game is in the place building state
 	if gameState == Constants.GameState.BUILD_PLACE:
 		if selectedBuilding != null and selectedTile != null:
+			# Move the building to the currently selected tile
 			selectedBuilding.position = selectedTile.position
 			
+			# If the player clicked to place the building
 			if Input.is_action_just_pressed("place_building"):
+				# Update the UI and game state
 				hudNode.UpdateBuildingPanel(Constants.GameState.TOWN)
+				# Deselect the building which will leave it in place
 				selectedBuilding = null
+			# If the player clicked to cancel the building placement
 			elif Input.is_action_just_pressed("cancel_building"):
+				# Destroy the building
 				selectedBuilding.queue_free()
 				selectedBuilding = null
+				# Update the UI and game state
 				hudNode.UpdateBuildingPanel(Constants.GameState.TOWN)
 
 
@@ -100,13 +108,12 @@ func DequeueTileFromSelection(tileToDequeue):
 	selectedTileQueue.remove_at(selectedTileQueue.find(tileToDequeue))
 
 
-#
+# Spawn the building and then update the UI and game state
 func StartSpawningBuilding(buildingData: Resource):
-	# Spawn the building
+	# Spawn the building and store a reference to it
 	var newBuilding = buildingData.buildingScene.instantiate()
-	#newBuilding.Setup(tilePos, tileGridPos)
 	buildingParent.add_child(newBuilding)
 	selectedBuilding = newBuilding
 	
+	# Update the UI and the game state
 	hudNode.UpdateBuildingPanel(Constants.GameState.BUILD_PLACE)
-	#gameState = Constants.GameState.BUILD_PLACE

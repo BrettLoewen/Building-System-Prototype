@@ -4,10 +4,8 @@ extends Button
 # Used to display the name of the building data for this button
 @export var label: Label
 
-# Used to store the building data for this button
-var data: Resource
-
-var onClickCallback: Callable
+var data: Resource				# Used to store the building data for this button
+var onClickCallback: Callable	# Called when the button is pressed
 
 
 # Called when the node enters the scene tree for the first time.
@@ -28,6 +26,8 @@ func Setup(buildingData: Resource, onClick: Callable):
 	onClickCallback = onClick
 
 
+# Called when the button is pressed
 func _on_pressed():
+	# Call the passed callback from when this button was setup
 	if onClickCallback != null:
 		onClickCallback.call(data)

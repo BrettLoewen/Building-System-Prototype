@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfod00vt7gll"
-path="res://.godot/imported/Into the Breach.png-9a640ec63014a1d0fb29ae0b44ca8511.ctex"
+uid="uid://ba22uysi7x21u"
+path="res://.godot/imported/Into the Breach Cropped.png-ba8e18e5deec23533d9b079d44bd7364.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://References/Into the Breach.png"
-dest_files=["res://.godot/imported/Into the Breach.png-9a640ec63014a1d0fb29ae0b44ca8511.ctex"]
+source_file="res://Reference Images/Into the Breach Cropped.png"
+dest_files=["res://.godot/imported/Into the Breach Cropped.png-ba8e18e5deec23533d9b079d44bd7364.ctex"]
 
 [params]
 

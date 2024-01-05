@@ -33,10 +33,12 @@ func _on_close_button_pressed():
 
 # Used to update the game state regarding the building panel
 func UpdateBuildingPanel(newGameState: Constants.GameState):
+	# Ensure the new game state is stored
 	if mainNode == null:
 		mainNode = get_node("/root/Main")
 	mainNode.gameState = newGameState
 	
+	# Turn on/off UI elements according to the new game state
 	if newGameState == Constants.GameState.BUILD_MENU:
 		buildingPanel.show()
 		buildingPanelOpenButton.hide()
@@ -74,4 +76,5 @@ func OnClickBuildingButton(buildingData: Resource):
 	if mainNode == null:
 		mainNode = get_node("/root/Main")
 	
+	# Spawn the building
 	mainNode.StartSpawningBuilding(buildingData)
