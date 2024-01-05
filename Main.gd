@@ -1,6 +1,8 @@
 extends Node2D
 
 
+var gameState: Constants.GameState
+
 @export var tileScene: PackedScene			# Defines the tile that will be spawned
 @export var gridSize := Vector2i(6, 6)		# Defines how many tiles will be spawned
 @export var tileSize := Vector2i(56, 42)	# Defines how much space a tile takes up
@@ -17,10 +19,15 @@ var selectedTile
 
 # Defines the buildings that will appear in the building menu
 @export var buildings: Array[Resource]
+var selectedBuilding
+@export var buildingParent: Node2D
+
+@export var hudNode: Control
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	gameState = Constants.GameState.TOWN
 	SpawnTiles()
 
 
@@ -40,6 +47,19 @@ func _process(_delta):
 		if selectedTile != null:
 			selectedTile.DeselectTile()
 			selectedTile = null
+	
+	#
+	if gameState == Constants.GameState.BUILD_PLACE:
+		if selectedBuilding != null and selectedTile != null:
+			selectedBuilding.position = selectedTile.position
+			
+			if Input.is_action_just_pressed("place_building"):
+				hudNode.UpdateBuildingPanel(Constants.GameState.TOWN)
+				selectedBuilding = null
+			elif Input.is_action_just_pressed("cancel_building"):
+				selectedBuilding.queue_free()
+				selectedBuilding = null
+				hudNode.UpdateBuildingPanel(Constants.GameState.TOWN)
 
 
 # Called to spawn the grid of tiles
@@ -78,3 +98,15 @@ func EnqueueTileForSelection(tileToEnqueue):
 func DequeueTileFromSelection(tileToDequeue):
 	# The tile might not be the first tile in the queue, so we need to find it and then remove it
 	selectedTileQueue.remove_at(selectedTileQueue.find(tileToDequeue))
+
+
+#
+func StartSpawningBuilding(buildingData: Resource):
+	# Spawn the building
+	var newBuilding = buildingData.buildingScene.instantiate()
+	#newBuilding.Setup(tilePos, tileGridPos)
+	buildingParent.add_child(newBuilding)
+	selectedBuilding = newBuilding
+	
+	hudNode.UpdateBuildingPanel(Constants.GameState.BUILD_PLACE)
+	#gameState = Constants.GameState.BUILD_PLACE

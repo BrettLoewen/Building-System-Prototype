@@ -6,11 +6,14 @@ extends Control
 @export var buildingPanel: Control
 @export var buildingPanelOpenButton: Control
 @export var buildingSpawnButtonParent: Control
+@export var buildingPrompt: Control
+
+var mainNode
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	ToggleBuildingPanel(false)
+	UpdateBuildingPanel(Constants.GameState.TOWN)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -20,23 +23,33 @@ func _process(_delta):
 
 # Called when the building button is pressed to open the building panel
 func _on_building_panel_button_pressed():
-	ToggleBuildingPanel(true)
+	UpdateBuildingPanel(Constants.GameState.BUILD_MENU)
 
 
 # Called when the close button is pressed to close the building panel
 func _on_close_button_pressed():
-	ToggleBuildingPanel(false)
+	UpdateBuildingPanel(Constants.GameState.TOWN)
 
 
-# Used to open/close the building panel
-func ToggleBuildingPanel(open: bool):
-	if open:
+# Used to update the game state regarding the building panel
+func UpdateBuildingPanel(newGameState: Constants.GameState):
+	if mainNode == null:
+		mainNode = get_node("/root/Main")
+	mainNode.gameState = newGameState
+	
+	if newGameState == Constants.GameState.BUILD_MENU:
 		buildingPanel.show()
 		buildingPanelOpenButton.hide()
+		buildingPrompt.hide()
 		SetupBuildingSpawnButtons()
-	else:
+	elif newGameState == Constants.GameState.TOWN:
 		buildingPanel.hide()
 		buildingPanelOpenButton.show()
+		buildingPrompt.hide()
+	elif newGameState == Constants.GameState.BUILD_PLACE:
+		buildingPanel.hide()
+		buildingPanelOpenButton.hide()
+		buildingPrompt.show()
 
 
 # Used to setup the building buttons within the building list
@@ -46,10 +59,19 @@ func SetupBuildingSpawnButtons():
 		child.queue_free()
 	
 	# Get the main node
-	var mainNode = get_node("/root/Main")
+	if mainNode == null:
+		mainNode = get_node("/root/Main")
 	
 	# Spawn a building button for each building resource the main node has
 	for building in mainNode.buildings:
 		var newBuildingSpawnButton = buildingSpawnButtonScene.instantiate()
-		newBuildingSpawnButton.Setup(building)
+		newBuildingSpawnButton.Setup(building, OnClickBuildingButton)
 		buildingSpawnButtonParent.add_child(newBuildingSpawnButton)
+
+
+# Passed to building buttons and they call it when they get pressed
+func OnClickBuildingButton(buildingData: Resource):
+	if mainNode == null:
+		mainNode = get_node("/root/Main")
+	
+	mainNode.StartSpawningBuilding(buildingData)

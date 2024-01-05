@@ -25,13 +25,12 @@ font_size = 8
 font = ExtResource("3_6x8fh")
 font_size = 8
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("tileParent", "buildingParent", "hudNode")]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("tileParent", "buildingParent")]
 script = ExtResource("1_tmgw6")
 tileScene = ExtResource("2_mokvw")
 tileParent = NodePath("Tile Grid")
 buildings = Array[Resource]([ExtResource("3_23ywm"), ExtResource("4_uhaky"), ExtResource("5_qi1iq"), ExtResource("6_hq8gg")])
 buildingParent = NodePath("Building Manager")
-hudNode = NodePath("Camera2D/CanvasLayer/HUD")
 
 [node name="Tile Grid" type="Node2D" parent="."]
 
