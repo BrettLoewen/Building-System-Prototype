@@ -1,10 +1,42 @@
-[gd_scene load_steps=2 format=3 uid="uid://8cqyxmbj4ar3"]
+[gd_scene load_steps=8 format=3 uid="uid://8cqyxmbj4ar3"]
 
 [ext_resource type="Texture2D" uid="uid://bym33jpvnx5bm" path="res://Art/Building 1x1.png" id="1_motyo"]
+[ext_resource type="Script" path="res://Building.gd" id="1_t4m1g"]
+[ext_resource type="Texture2D" uid="uid://bcxwi6q5oo6np" path="res://Art/Line Top-Left.png" id="2_5el0s"]
+[ext_resource type="Resource" uid="uid://ddvqtisdpws7f" path="res://Resources/Colors.tres" id="2_a521d"]
+[ext_resource type="Texture2D" uid="uid://0r5630dgtn1e" path="res://Art/Line Top-Right.png" id="3_l0jxv"]
+[ext_resource type="Texture2D" uid="uid://vsn2cd1gl5qg" path="res://Art/Line Bottom-Left.png" id="4_il2km"]
+[ext_resource type="Texture2D" uid="uid://cc3qmehbutd44" path="res://Art/Line Bottom-Right.png" id="5_dwbnw"]
 
-[node name="Building 1x1" type="Node2D"]
-modulate = Color(0.454902, 0.890196, 1, 1)
+[node name="Building 1x1" type="Node2D" node_paths=PackedStringArray("lines", "lineParent")]
+script = ExtResource("1_t4m1g")
+lines = [NodePath("Lines/Line Top-Left"), NodePath("Lines/Line Top-Right"), NodePath("Lines/Line Bottom-Left"), NodePath("Lines/Line Bottom-Right")]
+lineParent = NodePath("Lines")
+colors = ExtResource("2_a521d")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.454902, 0.890196, 1, 1)
 position = Vector2(0, -32)
 texture = ExtResource("1_motyo")
+
+[node name="Lines" type="Node2D" parent="."]
+
+[node name="Line Top-Left" type="Sprite2D" parent="Lines"]
+z_index = 1
+position = Vector2(0, -32)
+texture = ExtResource("2_5el0s")
+
+[node name="Line Top-Right" type="Sprite2D" parent="Lines"]
+z_index = 2
+position = Vector2(0, -32)
+texture = ExtResource("3_l0jxv")
+
+[node name="Line Bottom-Left" type="Sprite2D" parent="Lines"]
+z_index = 3
+position = Vector2(0, -32)
+texture = ExtResource("4_il2km")
+
+[node name="Line Bottom-Right" type="Sprite2D" parent="Lines"]
+z_index = 4
+position = Vector2(0, -32)
+texture = ExtResource("5_dwbnw")

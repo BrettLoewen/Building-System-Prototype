@@ -8,6 +8,9 @@ extends Node2D
 var gridPos: Vector2i
 var mainNode
 
+# Stores the building placed on this tile if one exists
+var building
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
